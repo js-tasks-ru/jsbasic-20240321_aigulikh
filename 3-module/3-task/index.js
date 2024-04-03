@@ -1,6 +1,16 @@
+function camelize(str) {
+  return str
+    .split('-') 
+    .map(
+      (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+    )
+    .join(''); 
+}
+
+
 /***
  npm test не проходит, уже нашла в задачнике верное решение,
- но почему нельзя так решить - я не понимаю... ***/
+ но почему нельзя так решить - я не понимаю... 
 function camelize(str) {
   let arr = str.split('');
   let arr2 = [];
@@ -19,10 +29,7 @@ function camelize(str) {
 }
 
 
-
-
-  /*** почему этот код не сработал? проверяла на примерах из задачника в онлайн 
-  редакторе все было ок, ну кроме пустой строки, тут это не реализовано
+ещё такое делала:
   let arr = str.split('-');
   let arr2 = [];
   arr2.push(arr[0]);
