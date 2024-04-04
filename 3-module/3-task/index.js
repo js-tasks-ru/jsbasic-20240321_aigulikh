@@ -39,4 +39,22 @@ function camelize(str) {
   }
 
   console.log(arr2.join(""));
+
+let users = [user1, user2];
+function showSalary(users2, age) {
+    let someInd = users2.filter(item => item.age <= age);
+    let str = [];
+    for (let ind = 0; ind < (someInd.length ); ind += 1) {
+        let strng = someInd[ind].name + ", " + someInd[ind].balance +"\n";
+        console.log(strng);
+        str.push(strng);
+    }
+    console.log(str.toString());
+
+}
+let result = showSalary(users, 30);
+
+
+
+
   ***/
