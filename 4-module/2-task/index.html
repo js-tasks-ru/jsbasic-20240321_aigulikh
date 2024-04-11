@@ -56,7 +56,11 @@
   <script src="index.js"></script>
   <script>
     let table = document.querySelector('table');
-
+    function makeDiagonalRed(table) {
+    for (let i = 0; table.rows.length; i++) {
+        table.rows[i].cells[i].style.backgroundColor = 'red'
+      }
+    }
     makeDiagonalRed(table);
   </script>
 </body>
