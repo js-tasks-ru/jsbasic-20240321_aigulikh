@@ -12,11 +12,11 @@ export default class ProductCard {
    return `
     <div class="card">
     <div class="card__top">
-        <img src="/assets/images/products/...значение product.image..." class="card__image" alt="product">
-        <span class="card__price">€<!--значение product.price--></span>
+        <img src="/assets/images/products/${this.product.image}" class="card__image" alt="product">
+        <span class="card__price">€${this.product.price.toFixed(2)}</span>
     </div>
     <div class="card__body">
-        <div class="card__title"><!--значение product.name--></div>
+        <div class="card__title">${this.product.name}</div>
         <button type="button" class="card__button">
             <img src="/assets/images/icons/plus-icon.svg" alt="icon">
         </button>
@@ -26,13 +26,6 @@ export default class ProductCard {
   
   #render() {
     this.elem = createElement(this.#template());
-
-    let price = this.elem.querySelector('.card__price');
-    price.textContent = `€${this.product.price.toFixed(2)}`;
-    let cardSrc = this.elem.querySelector('.card__image');
-    cardSrc.src = `/assets/images/products/${this.product.image}`;
-    let cardName = this.elem.querySelector('.card__title');
-    cardName.textContent = `${this.product.name}`
 
     let buttons = this.elem.querySelectorAll('.card__button');
     

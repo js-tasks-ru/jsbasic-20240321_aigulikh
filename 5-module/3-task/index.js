@@ -3,6 +3,7 @@ function initCarousel() {
       
   let conteiner =  document.querySelector('.carousel__inner')
   let width = slides[0].offsetWidth;
+  console.log(width);
   
   let rightClick = document.querySelector('.carousel__arrow_right');
   let leftClick = document.querySelector('.carousel__arrow_left');
