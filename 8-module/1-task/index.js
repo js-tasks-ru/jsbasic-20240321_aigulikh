@@ -20,7 +20,7 @@ export default class CartIcon {
           <span class="cart-icon__count">${cart.getTotalCount()}</span>
           <span class="cart-icon__price">€${cart.getTotalPrice().toFixed(2)}</span>
         </div>`;
-
+      this.initialPos();
       this.updatePosition();
 
       this.elem.classList.add('shake');
@@ -38,7 +38,48 @@ export default class CartIcon {
     window.addEventListener('resize', () => this.updatePosition());
   }
 
-  updatePosition() {
-    // ваш код ...
+  initialPos() {
+    const initialTopCoord = this.elem.getBoundingClientRect().top;
+    return initialTopCoord;
   }
+
+  updatePosition() {
+    let isMobile = document.documentElement.clientWidth <= 767;
+    let initialTopCoord = this.initialPos();
+
+    if (isMobile) {
+        Object.assign(this.elem.style, {
+          position: '',
+          top: '',
+          left: '',
+          zIndex: ''
+        });
+    } else if (document.querySelector('.cart-icon_visible')) {
+
+      if (window.scrollY > initialTopCoord) {
+        let leftIndent = Math.min(
+          document.querySelector('.container').getBoundingClientRect().right + 20,
+          document.documentElement.clientWidth - this.elem.offsetWidth - 10
+        ) + 'px' ;
+        
+        Object.assign(this.elem.style, {
+          position: 'fixed',
+          top: '50px',
+          zIndex: 1e3,
+          right: '10px',
+          left: leftIndent
+        });
+
+      } else {
+        Object.assign(this.elem.style, {
+          position: '',
+          top: '',
+          left: '',
+          zIndex: ''
+        });
+      }
+
+    }
+  }
+  
 }

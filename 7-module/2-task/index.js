@@ -19,12 +19,10 @@ export default class Modal {
       </button>
 
       <h3 class="modal__title">
-        Вот сюда нужно добавлять заголовок
       </h3>
     </div>
 
     <div class="modal__body">
-      A сюда нужно добавлять содержимое тела модального окна
     </div>
   </div>
 
@@ -37,9 +35,10 @@ export default class Modal {
   return this.elem;
 }
 
-close() {
-document.body.querySelector('.modal').remove();
+close = (event) => {
+this.elem.remove();
 document.body.classList.remove('is-modal-open');
+document.removeEventListener(event, this.down);
 }
 
 setTitle (title) {
@@ -47,29 +46,24 @@ this.elem.querySelector('.modal__title').textContent = title;
 }
 
 setBody (node) {
+this.elem.querySelector('.modal__body').innerHTML = ""
 this.elem.querySelector('.modal__body').append(node);
 }
 
 open () {
   document.body.append(this.elem);
   document.body.classList.add('is-modal-open');
-  let button = document.body.querySelector('.modal__close');
+  let button = this.elem.querySelector('.modal__close');
   button.addEventListener('click', this.close);
-
   document.addEventListener('keydown', this.down);
 }
 
 down = (event) => {
   if (event.code === "Escape") {
-    document.addEventListener('keyup', this.up);
+    this.close();
   }
 } 
 
-up () {
-    document.body.querySelector('.modal').remove() ;
-    document.body.classList.remove('is-modal-open');
-    document.removeEventListener('keydown', this.down);
-}
 
 }
 
